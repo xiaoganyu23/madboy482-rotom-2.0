@@ -107,8 +107,8 @@
         "resistant_to": ["Ghost", "Psychic", "Dark"],
         "vulnerable_to": ["Fighting", "Bug", "Fairy"]
     }
-    "Lonely":{
-        "Stats increase⬆️ ": [" Attack "],
-        "Stats decrease⬇️ ": [" Defense "]
+    "lonely":{
+        "Stats-increase⬆️": ["Attack"],
+        "Stats-decrease⬇️": ["Defense"]
     }
 }
