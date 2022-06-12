@@ -545,24 +545,6 @@ def bot_added(app, message):
             )
             
 
-# ==== Types List =====
-def pnats_buttons(user_id):
-    keyboard = ([[
-        InlineKeyboardButton('Lonely',callback_data=f"natures_lonely_{user_id}"),
-        InlineKeyboardButton('Fighting',callback_data=f"natures_adam_{user_id}"),
-        InlineKeyboardButton('Flying',callback_data=f"natures_hardy_{user_id}")]])
-    keyboard += ([[
-        InlineKeyboardButton('Delete',callback_data=f"hexa_delete_{user_id}")]])
-    return keyboard
-    
-@app.on_message(Filters.command(['natures', 'natures@MadBoy_Rotomgram2_Bot']))
-def natures(app, message): 
-    user_id = message.from_user.id
-    app.send_message(
-        chat_id=message.chat.id,
-        text="List of natures of Pokemons:",
-        reply_markup=InlineKeyboardMarkup(pnats_buttons(user_id))
-    )
 
 
 app.run()
