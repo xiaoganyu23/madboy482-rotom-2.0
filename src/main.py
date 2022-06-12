@@ -126,7 +126,7 @@ def ptype(app, message):
 # ==== Types List =====
 def ptype_buttons(user_id):
     keyboard = ([[
-        InlineKeyboardButton('Normal',callback_data=f"type_normal_{user_id}"),
+        InlineKeyboardButton('Normal',callback_data=f"https://telegra.ph/file/8e4f01cb34665ba49cb2d.jpg"),
         InlineKeyboardButton('Fighting',callback_data=f"type_fighting_{user_id}"),
         InlineKeyboardButton('Flying',callback_data=f"type_flying_{user_id}")]])
     keyboard += ([[
