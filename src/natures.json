@@ -1,0 +1,14 @@
+{
+    "lonely":{
+        "Stats-increase⬆️": ["Attack"],
+        "Stats-decrease⬇️": ["Defense"]
+    }
+    "adam":{
+        "Stats-increase⬆️": ["Attack"],
+        "Stats-decrease⬇️": ["Defense"]
+    }
+    "hardy":{
+        "Stats-increase⬆️": ["Attack"],
+        "Stats-decrease⬇️": ["Defense"]
+    }
+}
