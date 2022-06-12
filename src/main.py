@@ -86,6 +86,17 @@ def start(app, message):
         parse_mode='HTML'
     )
 
+    
+# ==== Genr1 ====
+@app.on_message(Filters.command(['genr1', 'genr1@officerjennyprobot']))
+def genr1(app, message):
+    app.send_message(
+        chat_id=message.chat.id,
+        text=texts['genr1'],
+        parse_mode='HTML'
+    )
+    
+    
 # ==== Type Pokemon =====
 @app.on_message(Filters.command(['type', 'type@officerjennyprobot']))
 def ptype(app, message):
