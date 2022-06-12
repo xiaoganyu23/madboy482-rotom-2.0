@@ -22,7 +22,6 @@ texts = json.load(open('src/texts.json', 'r'))
 data = json.load(open('src/pkmn.json', 'r'))
 stats = json.load(open('src/stats.json', 'r'))
 jtype = json.load(open('src/type.json', 'r'))
-ntype = json.load(open('src/natures.json', 'r'))
 
 usage_dict = {'vgc': None}
 
