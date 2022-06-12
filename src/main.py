@@ -545,7 +545,7 @@ def bot_added(app, message):
             
 
 # ==== Types List =====
-def pnatures_buttons(user_id):
+def ptypes_buttons(user_id):
     keyboard = ([[
         InlineKeyboardButton('Lonely',callback_data=f"type_Lonely_{user_id}"),
         InlineKeyboardButton('Fighting',callback_data=f"type_fighting_{user_id}"),
@@ -580,7 +580,7 @@ def natures(app, message):
     app.send_message(
         chat_id=message.chat.id,
         text="List of natures of Pokemons:",
-        reply_markup=InlineKeyboardMarkup(pnatures_buttons(user_id))
+        reply_markup=InlineKeyboardMarkup(ptypes_buttons(user_id))
     )
 
 
