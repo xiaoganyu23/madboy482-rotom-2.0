@@ -106,9 +106,5 @@
         "weak_against": ["Fighting", "Dark", "Fairy"],
         "resistant_to": ["Ghost", "Psychic", "Dark"],
         "vulnerable_to": ["Fighting", "Bug", "Fairy"]
-    }
-    "lonely":{
-        "Stats-increase⬆️": ["Attack"],
-        "Stats-decrease⬇️": ["Defense"]
-    }
+    }  
 }
