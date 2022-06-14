@@ -86,16 +86,7 @@ def start(app, message):
         parse_mode='HTML'
     )
 
-    
-# ==== Genr1 ====
-@app.on_message(Filters.command(['genr1', 'genr1@officerjennyprobot']))
-def genr1(app, message):
-    app.send_message(
-        chat_id=message.chat.id,
-        text=texts['genr1'],
-        parse_mode='HTML'
-    )
-    
+   
     
 # ==== Type Pokemon =====
 @app.on_message(Filters.command(['type', 'type@officerjennyprobot']))
@@ -555,6 +546,104 @@ def bot_added(app, message):
             )
             
 
+@app.on_message(Filters.command(['generation', 'generation@officerjennyprobot']))
+def generation(app, message):
+    try:
+        gtype = message.text.split(' ')[1]
+    except IndexError as s:
+        app.send_message(
+            chat_id=message.chat.id,
+            text="`Syntex error: use eg '/generation fairy'`"
+        )
+        return
+    try:
+        data = jtype[gtype.lower()]
+    except KeyError as s:
+        app.send_message(
+            chat_id=message.chat.id,
+            text=("`Eeeh, Lol, This type doesn't exists :/ `\n"
+                  "`Do  /generations  to check for the existing types.`")
+        )
+        return
+    generation = ", ".join(data['generation'])
+    keyboard = ([[
+        InlineKeyboardButton('All Types',callback_data=f"hexa_back_{message.from_user.id}")]])
+    app.send_message(
+        chat_id=message.chat.id,
+        text=(f"Generation  :  `{gtype.lower()}`\n\n"
+              f"HERE ARE THE LIST OF POKEMON:\n`{generation}`"),
+        reply_markup=InlineKeyboardMarkup(keyboard)
+           
+    )
+            
+def generation_buttons(user_id):
+    keyboard = ([[
+        InlineKeyboardButton('GEN1',callback_data=f"type_1_{user_id}"),
+        InlineKeyboardButton('Fighting',callback_data=f"type_2_{user_id}"),
+        InlineKeyboardButton('Flying',callback_data=f"type_3_{user_id}")]])
+    keyboard += ([[
+        InlineKeyboardButton('Poison',callback_data=f"type_4_{user_id}"),
+        InlineKeyboardButton('Ground',callback_data=f"type_5_{user_id}"),
+        InlineKeyboardButton('Rock',callback_data=f"type_6_{user_id}")]])
+    keyboard += ([[
+        InlineKeyboardButton('Steel',callback_data=f"type_7_{user_id}")]])
+    keyboard += ([[
+        InlineKeyboardButton('Delete',callback_data=f"hexa_delete_{user_id}")]])
+    return keyboard
+    
+@app.on_message(Filters.command(['generations', 'generation@officerjennyprobot']))
+def types(app, message): 
+    user_id = message.from_user.id
+    app.send_message(
+        chat_id=message.chat.id,
+        text="List of types of Pokemons:",
+        reply_markup=InlineKeyboardMarkup(generation_buttons(user_id))
+      
+@app.on_callback_query(Filters.create(lambda _, query: 'type_' in query.data))
+def buttoned(client: app, callback_query: CallbackQuery):
+    q_data = callback_query.data
+    query_data = q_data.split('_')[0]
+    type_n = q_data.split('_')[1]
+    user_id = int(q_data.split('_')[2])
+    cuser_id = callback_query.from_user.id
+    if cuser_id == user_id:
+        if query_data == "type":
+            data = jtype[type_n]
+            generation = ", ".join(data['generation'])
+            keyboard = ([[
+            InlineKeyboardButton('Back',callback_data=f"hexa_back_{user_id}")]])
+            callback_query.message.edit_text(
+                text=(f"Type  :  `{type_n}`\n\n"
+                f"Generation:\n`{generation}`"),
+                reply_markup=InlineKeyboardMarkup(keyboard)
+            )
+    else:
+        callback_query.answer(
+            text="You can't use this button!",
+            show_alert=True
+        )
+      
+@app.on_callback_query(Filters.create(lambda _, query: 'hexa_' in query.data))
+def buttoned2(client: app, callback_query: CallbackQuery):
+    q_data = callback_query.data
+    query_data = q_data.split('_')[1]
+    user_id = int(q_data.split('_')[2])
+    cuser_id = callback_query.from_user.id
+    if user_id == cuser_id:
+        if query_data == "back":
+            callback_query.message.edit_text(
+                "List of types of Pokemons:",
+                reply_markup=InlineKeyboardMarkup(generations_buttons(user_id))
+            )
+        elif query_data == "delete":
+            callback_query.message.delete()
+        else:
+            return
+    else:
+        callback_query.answer(
+            text="You can't use this button!",
+            show_alert=True
+        )
 
 
 app.run()
