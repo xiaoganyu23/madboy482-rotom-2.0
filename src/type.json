@@ -1,7 +1,7 @@
 {
     "normal":{
-        "strong_against": ["None"],
-        "weak_against": ["Rock", "Ghost", "Steel"],
+        "strong_against": ["SCAM\nsacem\nhu"],
+        "weak_against": ["kekz", "hmm", "Steel"],
         "resistant_to": ["Ghost"],
         "vulnerable_to": ["Fighting"]
     },
